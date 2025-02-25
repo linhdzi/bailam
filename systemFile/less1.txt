@@ -1,0 +1,37 @@
+import 'dart:io';
+
+void main() {
+  // Enter integer N
+  stdout.write("Enter an integer N: ");
+  int n = int.parse(stdin.readLineSync()!);
+  print("Result N*N: ${n * n}");
+
+  // Enter integer M
+  stdout.write("Enter an integer M: ");
+  int m = int.parse(stdin.readLineSync()!);
+
+  // Calculate sum, difference, and product of N and M, find the largest number
+  int sum = n + m;
+  int diff = (n - m).abs();
+  int product = n * m;
+  int maxVal = [sum, diff, product].reduce((a, b) => a > b ? a : b);
+  print("Largest number (among sum, difference, product of N and M): $maxVal");
+
+  // Enter integer K
+  stdout.write("Enter an integer K: ");
+  int k = int.parse(stdin.readLineSync()!);
+
+  // Find the smallest and largest number among N, M, K
+  List<int> nums = [n, m, k];
+  int minNum = nums.reduce((a, b) => a < b ? a : b);
+  int maxNum = nums.reduce((a, b) => a > b ? a : b);
+  print("Smallest number: $minNum");
+  print("Largest number: $maxNum");
+
+  // Count odd numbers between minNum and maxNum
+  int oddCount = 0;
+  for (int i = minNum; i <= maxNum; i++) {
+    if (i % 2 != 0) oddCount++;
+  }
+  print("Count of odd numbers in the range: $oddCount");
+}
