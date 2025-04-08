@@ -1,8 +1,0 @@
-class Product {
-  int id;
-  String name;
-  int price;
-  double quantity;
-
-  Product(this.id, this.name, this.price, this.quantity);
-}
