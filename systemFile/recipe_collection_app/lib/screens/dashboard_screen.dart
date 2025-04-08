@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/category.dart';
 import '../widgets/category_item.dart';
 import 'add_category_screen.dart';
-import 'insights_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -38,17 +37,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.analytics),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => InsightsScreen(categories: categories),
-              ),
-            ),
-          ),
-        ],
       ),
       body: Column(
         children: [
