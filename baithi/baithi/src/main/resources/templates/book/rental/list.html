@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Rental List</title></head>
+<body>
+<h1>Rentals</h1>
+<a th:href="@{/rentals/add}">Add Rental</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Customer</th><th>Vehicle</th><th>Rental Date</th><th>Return Date</th><th>Actions</th>
+    </tr>
+    <tr th:each="r : ${rentals.content}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.customer.firstName + ' ' + r.customer.lastName}"></td>
+        <td th:text="${r.vehicle.make + ' ' + r.vehicle.model}"></td>
+        <td th:text="${r.rentalDate}"></td>
+        <td th:text="${r.returnDate}"></td>
+        <td><a th:href="@{/rentals/delete/{id}(id=${r.id})}">Delete</a></td>
+    </tr>
+</table>
+<div th:if="${rentals.totalPages > 1}">
+    <span th:each="i : ${#numbers.sequence(0, rentals.totalPages-1)}">
+        <a th:href="@{/rentals(page=${i})}" th:text="${i+1}"></a>
+    </span>
+</div>
+</body>
+</html>

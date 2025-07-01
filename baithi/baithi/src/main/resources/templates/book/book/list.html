@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books List</title>
+</head>
+<body>
+<h1>Books List</h1>
+<a th:href="@{/books/add}">Add New Book</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Title</th><th>Author</th><th>Year</th><th>Copies</th><th>Actions</th>
+    </tr>
+    <tr th:each="b : ${books.content}">
+        <td th:text="${b.id}"></td>
+        <td th:text="${b.title}"></td>
+        <td th:text="${b.author}"></td>
+        <td th:text="${b.publishedYear}"></td>
+        <td th:text="${b.copiesAvailable}"></td>
+        <td>
+            <a th:href="@{/books/edit/{id}(id=${b.id})}">Edit</a> |
+            <a th:href="@{/books/delete/{id}(id=${b.id})}" onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<div th:if="${books.totalPages > 1}">
+    <span th:each="i : ${#numbers.sequence(0, books.totalPages-1)}">
+        <a th:href="@{/books(page=${i})}" th:text="${i+1}"></a>
+    </span>
+</div>
+</body>
+</html>

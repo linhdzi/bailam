@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Book</title>
+</head>
+<body>
+<h1 th:text="${book.id == null ? 'Add New Book' : 'Edit Book'}"></h1>
+
+<form th:action="@{/books/save}" th:object="${book}" method="post">
+    <div>
+        Title: <input type="text" th:field="*{title}"/>
+        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    </div>
+    <div>
+        Author: <input type="text" th:field="*{author}"/>
+        <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></p>
+    </div>
+    <div>
+        Published Year: <input type="number" th:field="*{publishedYear}"/>
+        <p th:if="${#fields.hasErrors('publishedYear')}" th:errors="*{publishedYear}"></p>
+    </div>
+    <div>
+        Copies Available: <input type="number" th:field="*{copiesAvailable}"/>
+        <p th:if="${#fields.hasErrors('copiesAvailable')}" th:errors="*{copiesAvailable}"></p>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+        <a th:href="@{/books}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

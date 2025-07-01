@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Add Rental</title></head>
+<body>
+<h1>Add Rental</h1>
+<form th:action="@{/rentals/save}" th:object="${rental}" method="post">
+    <div>
+        Customer:
+        <select th:field="*{customer}">
+            <option th:each="c : ${customers}" th:value="${c}" th:text="${c.firstName + ' ' + c.lastName}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}"></div>
+    </div>
+    <div>
+        Vehicle:
+        <select th:field="*{vehicle}">
+            <option th:each="v : ${vehicles}" th:value="${v}" th:text="${v.make + ' ' + v.model}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('vehicle')}" th:errors="*{vehicle}"></div>
+    </div>
+    <div>
+        Rental Date: <input type="date" th:field="*{rentalDate}"/>
+        <div th:if="${#fields.hasErrors('rentalDate')}" th:errors="*{rentalDate}"></div>
+    </div>
+    <div>
+        Return Date: <input type="date" th:field="*{returnDate}"/>
+        <div th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"></div>
+    </div>
+    <div><button type="submit">Save Rental</button></div>
+</form>
+<a th:href="@{/rentals}">Back to list</a>
+</body>
+</html>
